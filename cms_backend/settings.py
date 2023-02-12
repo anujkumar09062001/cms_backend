@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import datetime
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -136,11 +137,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # custom user
 AUTH_USER_MODEL = 'user.User'
 
-CORS_ORIGIN_WHITELIST = ['http://localhost:3000']
+CORS_ORIGIN_WHITELIST = ['http://localhost:3000',
+                         'https://master.d2m6mc438fdlrb.amplifyapp.com']
+
 
 JWT_AUTH = {
     'JWT_RESPONSE_PAYLOAD_HANDLER':
     'cms_backend.utils.my_jwt_response_handler',
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=360),
 }
 
 #Authentication & permission
